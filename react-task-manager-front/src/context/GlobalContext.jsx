@@ -1,12 +1,12 @@
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { createContext, useContext } from "react";
 import useTasks from "../hooks/useTasks";
 
 const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
-    const { value } = useTasks([])
+    const { tasks } = useTasks([])
     return (
-        <GlobalContext.Provider value={value}>
+        <GlobalContext.Provider value={{ tasks }}>
             {children}
         </GlobalContext.Provider>
     )
