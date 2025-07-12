@@ -1,5 +1,23 @@
 import { useState, useEffect, useMemo } from "react";
 
+export function taskReducer(state, action) {
+    switch (action.type) {
+        case "ADD_TASK":
+            return [...state, action.payload]
+            break
+        case "REMOVE_TASK":
+            return state
+            break
+        case "UPDATE_TASK":
+            return state
+            break
+        default:
+            return state
+
+    }
+}
+
+
 function useTasks(defaultValue = []) {
     const [tasks, setTasks] = useState(defaultValue)
     const url = import.meta.env.VITE_API_URL
@@ -18,24 +36,8 @@ function useTasks(defaultValue = []) {
     }, [])
     const value = useMemo(() => ({ tasks }), [tasks]);
 
-    function taskReducer(state, action) {
-        switch (action.type) {
-            case "ADD_TASK":
-                return state
-                break
-            case "REMOVE_TASK":
-                return state
-                break
-            case "UPDATE_TASK":
-                return state
-                break
-            default:
-                return state
 
-        }
-    }
-
-    return { value }
+    return { value, url }
 
 }
 
