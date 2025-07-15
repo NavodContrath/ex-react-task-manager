@@ -3,7 +3,7 @@ import useTasks from "../hooks/useTasks"
 
 export default function AddTask() {
     //custom hook useTasks
-    const { tasks, addTask } = useTasks()
+    const { addTask } = useTasks()
     //controlled input
     const [name, setName] = useState("")
     //uncrontolled inputs

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useGlobal } from "../context/GlobalContext"
 import React from "react"
 function TaskRow() {
@@ -13,7 +14,7 @@ function TaskRow() {
                     else if (task.status === "Done") status = "bg-success text-white"
                     return (
                         <div className="costum-row d-flex" key={task.id}>
-                            <div className="col-4 border ps-2">{task.title}</div>
+                            <Link className="col-4 border ps-2  text-decoration-none" to={`/task/${task.id}`}>{task.title}</Link>
                             <div className={`col-4 border ps-2 ${status}`}>{task.status}</div>
                             <div className="col-4 border ps-2">{task.createdAt}</div>
                         </div>
