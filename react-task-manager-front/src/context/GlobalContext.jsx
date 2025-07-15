@@ -4,9 +4,9 @@ import useTasks from "../hooks/useTasks";
 const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
-    const { tasks } = useTasks([])
+    const { tasks, removeTask } = useTasks([])
     return (
-        <GlobalContext.Provider value={{ tasks }}>
+        <GlobalContext.Provider value={{ tasks, removeTask }}>
             {children}
         </GlobalContext.Provider>
     )

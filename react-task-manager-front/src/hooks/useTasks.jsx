@@ -38,8 +38,23 @@ function useTasks(defaultValue = []) {
 
         }
     }
+    async function removeTask(taskID) {
+        try {
+            const res = await fetch(`${url}/tasks/${taskID}`, {
+                method: "DELETE"
+            })
+            const deleteTask = await res.json()
+            if (deleteTask.success) {
+                setTasks(curr => curr.filter(task => task.id !== taskID))
+            } else {
+                throw new Error(deleteTask.message)
+            }
+        } catch (error) {
+            alert(`Errore: ${err.message}`)
+        }
+    }
 
-    return { tasks, addTask }
+    return { tasks, addTask, removeTask }
 }
 
 export default useTasks
