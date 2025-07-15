@@ -1,9 +1,9 @@
 import { useState, useRef } from "react"
-import useTasks from "../hooks/useTasks"
+import { useGlobal } from "../context/GlobalContext"
 
 export default function AddTask() {
     //custom hook useTasks
-    const { addTask } = useTasks()
+    const { addTask } = useGlobal()
     //controlled input
     const [name, setName] = useState("")
     //uncrontolled inputs
