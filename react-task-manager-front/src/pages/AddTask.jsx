@@ -1,5 +1,6 @@
 import { useState, useRef } from "react"
 import { useGlobal } from "../context/GlobalContext"
+import { useNavigate } from "react-router-dom"
 
 export default function AddTask() {
     //custom hook useTasks
@@ -12,6 +13,8 @@ export default function AddTask() {
     //error handling variables
     const [errors, setErrors] = useState("")
     const symbols = "!@#$%^&*()-_=+[]{}|:',.<>?/`~"
+    //navigate 
+    const navigate = useNavigate()
 
     function validateName(value) {
         if (!value.trim()) return "Non puoi lasciare il campo vuoto"
@@ -46,6 +49,8 @@ export default function AddTask() {
             statusRef.current.value = "To do"
             descriptionRef.current.value = ""
             setErrors("")
+            navigate("/task-list")
+
         }
     }
 

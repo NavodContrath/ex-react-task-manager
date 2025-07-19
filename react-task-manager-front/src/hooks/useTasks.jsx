@@ -29,12 +29,15 @@ function useTasks() {
             if (savedTask.success) {
                 setTasks(curr => [...curr, savedTask.task])
                 alert("Task creata con successo!")
+                return true
 
             } else {
                 throw new Error(savedTask.message)
             }
         } catch (err) {
             alert(`Errore: ${err.message}`)
+            return false
+
 
         }
     }
@@ -53,8 +56,30 @@ function useTasks() {
             alert(`Errore: ${err.message}`)
         }
     }
+    async function updateTask(updatedTask, id) {
+        try {
+            const res = await fetch(`${url}/tasks/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedTask),
+            })
+            const data = await res.json()
 
-    return { tasks, addTask, removeTask }
+            if (data.success) {
+                setTasks(curr => curr.map(task => task.id === id ? data.task : task))
+                alert("Task modificata con successo!")
+
+            } else {
+                throw new Error(data.message)
+            }
+        } catch (err) {
+            alert(`Errore: ${err.message}`)
+
+
+        }
+    }
+
+    return { tasks, addTask, removeTask, updateTask }
 }
 
 export default useTasks

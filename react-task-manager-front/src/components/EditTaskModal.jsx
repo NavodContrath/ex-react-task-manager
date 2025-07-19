@@ -17,7 +17,6 @@ export default function EditTaskModal({ show, onClose, task, onSave }) {
         }
     }, [task, show])
 
-
     function validateName(value) {
         if (!value.trim()) return "Non puoi lasciare il campo vuoto"
         for (let char of value) {

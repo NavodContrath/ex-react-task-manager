@@ -2,13 +2,15 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useGlobal } from "../context/GlobalContext"
 import { useState } from "react"
 import Modal from "../components/Modal"
+import EditTaskModal from "../components/EditTaskModal"
 
 export default function TaskDetails() {
 
     const { id } = useParams()
-    const { tasks, removeTask } = useGlobal()
+    const { tasks, removeTask, updateTask } = useGlobal()
     const navigate = useNavigate()
     const [show, setShow] = useState(false)
+    const [showEdit, setShowEdit] = useState(false)
 
     const task = tasks.find(task => task.id.toString() === id)
 
@@ -19,6 +21,17 @@ export default function TaskDetails() {
             navigate("/task-list")
             setShow(false)
 
+        } catch (err) {
+            alert("Errore: " + err.message)
+        }
+    }
+    async function handleSave(updatedTask) {
+        try {
+            const success = await updateTask(updatedTask, updatedTask.id)
+            if (success) {
+                alert("Task modificata con successo")
+                setShowEdit(false)
+            }
         } catch (err) {
             alert("Errore: " + err.message)
         }
@@ -36,6 +49,12 @@ export default function TaskDetails() {
                 onConfirm={handleDelete}
                 confirmText={"Conferma"}
             />
+            <EditTaskModal
+                show={showEdit}
+                onClose={() => { setShowEdit(false) }}
+                task={task}
+                onSave={handleSave} />
+
             <div className="mt-4">
                 <h2>Dettaglio Task</h2>
                 <p><strong>Nome:</strong> {task.title}</p>
@@ -47,6 +66,12 @@ export default function TaskDetails() {
                     onClick={() => { setShow(true) }}
                 >
                     Elimina Task
+                </button>
+                <button
+                    className="btn btn-warning mt-2"
+                    onClick={() => { setShowEdit(true) }}
+                >
+                    Modifica Task
                 </button>
             </div>
         </div>
