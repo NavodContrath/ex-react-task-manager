@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
-import { useGlobal } from "../context/GlobalContext"
 import React from "react"
-function TaskRow() {
-    const { tasks } = useGlobal()
+function TaskRow({ tasks }) {
 
     return (
         <>
