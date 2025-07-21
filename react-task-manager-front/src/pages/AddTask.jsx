@@ -56,7 +56,8 @@ export default function AddTask() {
 
     return (
         <div className="container mt-5">
-            <form className="row g-3" onSubmit={handleSubmit}>
+            <h1 className="text-center my-5">Aggiungi task</h1>
+            <form className="row g-3 border p-5 bg-light rounded-3" onSubmit={handleSubmit}>
                 <div className="col-6">
                     <label className="form-label">Nome Task</label>
                     <input

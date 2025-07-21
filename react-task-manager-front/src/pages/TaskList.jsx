@@ -56,6 +56,7 @@ export default function TaskList() {
 
     return (
         <div className="container">
+            <h1 className="text-center my-4">La tua lista</h1>
             <input
                 type="text"
                 className="form-control my-3"

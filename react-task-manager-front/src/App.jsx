@@ -4,6 +4,7 @@ import DefaultLayout from './layout/DefaultLayout'
 import TaskList from './pages/TaskList'
 import AddTask from './pages/AddTask'
 import TaskDetails from './pages/TaskDetails'
+import Home from './pages/Home'
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
       <GlobalProvider>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<DefaultLayout />}>
+            <Route element={<DefaultLayout />}>
+              <Route path='/' element={<Home />} />
               <Route path='/task-list' element={<TaskList />} />
               <Route path='/add-task' element={<AddTask />} />
               <Route path='/task/:id' element={<TaskDetails />} />

@@ -62,7 +62,7 @@ export default function TaskDetails() {
                 <p><strong>Stato:</strong> {task.status}</p>
                 <p><strong>Data di creazione:</strong> {task.createdAt}</p>
                 <button
-                    className="btn btn-danger mt-2"
+                    className="btn btn-danger mt-2 me-2"
                     onClick={() => { setShow(true) }}
                 >
                     Elimina Task
