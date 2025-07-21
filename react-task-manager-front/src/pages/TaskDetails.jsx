@@ -39,6 +39,9 @@ export default function TaskDetails() {
 
     if (!task) return <div>Task non trovata.</div>
 
+    const date = new Date(task.createdAt).toLocaleDateString("it-IT")
+    const hour = new Date(task.createdAt).toLocaleTimeString("it-IT")
+
     return (
         <div className="container">
             <Modal
@@ -60,7 +63,7 @@ export default function TaskDetails() {
                 <p><strong>Nome:</strong> {task.title}</p>
                 <p><strong>Descrizione:</strong> {task.description}</p>
                 <p><strong>Stato:</strong> {task.status}</p>
-                <p><strong>Data di creazione:</strong> {task.createdAt}</p>
+                <p><strong>Data di creazione:</strong> {`${date} ${hour}`}</p>
                 <button
                     className="btn btn-danger mt-2 me-2"
                     onClick={() => { setShow(true) }}
